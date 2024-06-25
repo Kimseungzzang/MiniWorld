@@ -7,6 +7,7 @@ import com.kimseungzzang.MiniWorld.ServiceImpl.ValidateMemberException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -32,7 +33,9 @@ public class UserController {
              @RequestBody UserDto request
     ) {
         String token = this.userService.authenticateUser(request);
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+        HttpHeaders headers=new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body("Login successful!");
     }
 
 

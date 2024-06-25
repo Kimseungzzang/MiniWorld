@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,8 +21,11 @@ public class User {
     private Long id;
     private String email;
     private String password;
-    private String username;
+    private String nickname;
     private String encodedPassword;
+
+    @OneToMany
+    private List<Post> posts;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;

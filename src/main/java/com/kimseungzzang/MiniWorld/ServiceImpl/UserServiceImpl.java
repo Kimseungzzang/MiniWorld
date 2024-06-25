@@ -3,6 +3,7 @@ package com.kimseungzzang.MiniWorld.ServiceImpl;
 import com.kimseungzzang.MiniWorld.DTO.CustomUserInfoDto;
 import com.kimseungzzang.MiniWorld.DTO.UserDto;
 import com.kimseungzzang.MiniWorld.Entity.User;
+import com.kimseungzzang.MiniWorld.EnumType.RoleType;
 import com.kimseungzzang.MiniWorld.Repository.UserRepository;
 import com.kimseungzzang.MiniWorld.Service.UserService;
 import com.kimseungzzang.MiniWorld.Util.JwtUtil;
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
 
         }
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setRole(RoleType.USER);
         userRepository.save(user);
         return user.getId();
 
