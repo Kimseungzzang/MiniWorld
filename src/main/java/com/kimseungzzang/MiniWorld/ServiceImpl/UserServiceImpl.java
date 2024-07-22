@@ -7,6 +7,7 @@ import com.kimseungzzang.MiniWorld.EnumType.RoleType;
 import com.kimseungzzang.MiniWorld.Repository.UserRepository;
 import com.kimseungzzang.MiniWorld.Service.UserService;
 import com.kimseungzzang.MiniWorld.Util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -46,6 +48,18 @@ public class UserServiceImpl implements UserService {
         Optional<User> user=userRepository.findByEmail(Email);
 
         return user.get();
+    }
+
+    @Override
+    public UserDto getUserById(Long id) {
+        Optional<User> user=userRepository.findById(id);
+        if (user.isPresent()) {
+            log.info(user.get().getNickname());
+
+            UserDto userDto = modelMapper.map(user.get(), UserDto.class);
+            return userDto;
+        }
+    return null;
     }
 
     @Override

@@ -10,6 +10,7 @@ public interface UserService {
     void saveUser(UserDto userDto);
     User getUserByEmail(String Email);
 
+    UserDto getUserById(Long id);
     public Long join(User user) throws ValidateMemberException;
 
     String authenticateUser(UserDto userDto);

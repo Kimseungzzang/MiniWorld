@@ -54,6 +54,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void DeletePost(Long PostId) {
 
+
     }
 
     @Override
@@ -73,9 +74,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> findAll() {
+    public List<PostDto> findAll(Long id) {
 
-        return postRepository.findAll().stream()
+        return postRepository.findByUserId(id).stream()
                 .map(post -> {
                     PostDto postDto = mapper.map(post, PostDto.class);
                     String nickname = Optional.ofNullable(post.getUser())

@@ -34,10 +34,11 @@ public class PostController {
         postService.SavePost(postDto);
 ;
     }
-    @GetMapping("/post")
-    public ResponseEntity<List<PostDto>> getAllPosts()
+    @GetMapping("/postAll/{id}")
+    public ResponseEntity<List<PostDto>> getAllPosts(@PathVariable Long id)
     {
-        return new ResponseEntity<>(postService.findAll(), HttpStatus.OK);
+
+        return new ResponseEntity<>(postService.findAll(id), HttpStatus.OK);
     }
 
     @GetMapping("/post/{id}")

@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> getMemberProfile(
+    public ResponseEntity<String> login(
              @RequestBody UserDto request
     ) {
         String token = this.userService.authenticateUser(request);
@@ -44,6 +44,12 @@ public class UserController {
         User entity = modelMapper.map(userDto, User.class);
         Long id = userService.join(entity);
         return ResponseEntity.status(HttpStatus.OK).body(id);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDto> getMemberprofile(@PathVariable long id){
+        log.info("{}",id);
+        return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
     }
 
 }

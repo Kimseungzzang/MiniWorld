@@ -27,6 +27,9 @@ public class User {
     @OneToMany
     private List<Post> posts;
 
+    @OneToMany
+    private List<Diary> diaries;
+
     @Enumerated(EnumType.STRING)
     private RoleType role;
 

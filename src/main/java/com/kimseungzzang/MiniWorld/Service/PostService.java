@@ -10,7 +10,7 @@ public interface PostService {
 
     void UpdatePost(PostDto postDto,Long PostId);
     PostDto findById(Long PostId);
-    List<PostDto> findAll();
+    List<PostDto> findAll(Long id);
 
     Boolean checkPassword(PostDto postDto);
 
